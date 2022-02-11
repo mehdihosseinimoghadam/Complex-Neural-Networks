@@ -83,3 +83,23 @@ class CConv2d(nn.Module):
 
         return out
 
+##_______________________Complex Convolutional Block_______________________________________
+
+
+class CconvBlock(nn.Module):
+  def __init__(self, in_channels, out_channels, **kwargs):
+    super(CconvBlock, self).__init__()
+    self.in_channels = in_channels
+    self.out_channels = out_channels
+
+    self.CConv2d = CConv2d(self.in_channels, self.out_channels, **kwargs)
+    self.CBatchnorm = CBatchnorm(self.out_channels)
+    self.leaky_relu = nn.LeakyReLU()
+
+
+  def forward(self, x):
+    conved = self.CConv2d(x)
+    normed = self.CBatchnorm(conved)
+    activated =  self.leaky_relu(normed)
+
+    return activated

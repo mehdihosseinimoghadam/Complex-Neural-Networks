@@ -59,4 +59,27 @@ class CConv2d(nn.Module):
     return out
   
   
+  ##___________________________Complex BatchNorm Layer____________________________________
   
+  
+  class CBatchnorm(nn.Module):
+    def __init__(self, in_channels):
+        super(CBatchnorm, self).__init__()
+        self.in_channels = in_channels
+
+        self.re_batch = nn.BatchNorm2d(in_channels)
+        self.im_batch = nn.BatchNorm2d(in_channels)
+
+
+    def forward(self, x):
+        x_re = x[..., 0]
+        x_im = x[..., 1]
+
+        out_re =  self.re_batch(x_re)
+        out_im =  self.re_batch(x_im)
+
+
+        out = torch.cat([out_re, out_im], -1) 
+
+        return out
+

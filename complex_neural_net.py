@@ -86,7 +86,7 @@ class CConv2d(nn.Module):
         out = torch.stack([out_re, out_im], -1) 
 
         return out
-
+      
   
   ##___________________________Complex BatchNorm Layer____________________________________
   
@@ -224,4 +224,3 @@ class CMaxPool2d(nn.Module):
         out = torch.stack([out_re, out_im], -1) 
 
         return out
-

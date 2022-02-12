@@ -165,6 +165,7 @@ class CconvBlock(nn.Module):
 
 ##______________________Complex LSTM Layer_________________________________________________
 
+
 class CLSTM(nn.Module):
   def __init__(self, in_channels, hidden_size, num_layers, **kwargs):
     super(CLSTM, self).__init__()
@@ -181,12 +182,21 @@ class CLSTM(nn.Module):
         x_re = x[..., 0]
         x_im = x[..., 1]
 
-        out_re, (hn_re, cn_re) =  self.re_LSTM(x_re, (h0[...,0], c0[...,0]))
-        out_im, (hn_im, cn_im) =  self.im_LSTM(x_im, (h0[...,1], c0[...,1]))
+        out_re1, (hn_re1, cn_re1) =  self.re_LSTM(x_re, (h0[...,0], c0[...,0]))
+        out_re2, (hn_re2, cn_re2) =  self.im_LSTM(x_im, (h0[...,1], c0[...,1]))
+        out_re = out_re1 - out_re2
+        hn_re  = hn_re1  - hn_re2
+        cn_re  = cn_re1  - cn_re2
 
+        out_im1, (hn_im1, cn_im1) =  self.re_LSTM(x_re, (h0[...,1], c0[...,1]))
+        out_im2, (hn_im2, cn_im2) =  self.im_LSTM(x_im, (h0[...,0], c0[...,0]))
+        out_im = out_im1 + out_im2
+        hn_im  = hn_im1  + hn_im2
+        cn_im  = cn_im1  + cn_im2
 
         out = torch.stack([out_re, out_im], -1) 
         hn = torch.stack([hn_re, hn_im], -1) 
         cn = torch.stack([cn_re, cn_im], -1) 
 
         return out, (hn, cn)
+

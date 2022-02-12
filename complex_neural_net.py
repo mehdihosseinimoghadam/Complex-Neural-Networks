@@ -2,6 +2,35 @@ from torch import nn
 import torch
 
 
+##__________________________________Complex Linear Layer __________________________________________
+
+
+class CLinear(nn.Module):
+  def __init__(self, in_channels, out_channels, **kwargs):
+    super(CLinear, self).__init__()
+    self.in_channels = in_channels
+    self.out_channels = out_channels
+
+    self.re_linear = nn.Linear(self.in_channels, self.out_channels, **kwargs)
+    self.im_linear = nn.Linear(self.in_channels, self.out_channels, **kwargs)
+
+    nn.init.xavier_uniform_(self.re_linear.weight)
+    nn.init.xavier_uniform_(self.im_linear.weight)
+
+
+
+  def forward(self, x):  
+    x_re = x[..., 0]
+    x_im = x[..., 1]
+
+    out_re = self.re_linear(x_re) - self.im_linear(x_im)
+    out_im = self.re_linear(x_im) + self.im_linear(x_re)
+
+    out = torch.stack([out_re, out_im], -1) 
+
+    return out
+  
+  
 
 ##______________________________________Complex Convolution 2d_____________________________________________
 

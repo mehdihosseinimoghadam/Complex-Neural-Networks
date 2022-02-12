@@ -53,13 +53,13 @@ VGG_types = {
 }
 
 
-class VGG_net(nn.Module):
+class Complex_VGG_net(nn.Module):
     def __init__(self, in_channels=3, num_classes=1000):
-        super(VGG_net, self).__init__()
+        super(Complex_VGG_net, self).__init__()
         self.in_channels = in_channels
-        self.conv_layers = self.create_conv_layers(VGG_types["VGG16"])
+        self.complex_conv_layers = self.complex_conv_layers_block(VGG_types["VGG16"])
 
-        self.fcs = nn.Sequential(
+        self.complex_linear_block = nn.Sequential(
             CLinear(512 * 7 * 7 , 4096),
             nn.ReLU(),
             nn.Dropout(p=0.5),
@@ -71,14 +71,14 @@ class VGG_net(nn.Module):
 
     def forward(self, x):
         print(x.shape)
-        x = self.conv_layers(x)
+        x = self.complex_conv_layers(x)
         print(x.shape)
         x = x.reshape(x.shape[0], -1,2)
         print(x.shape)
-        x = self.fcs(x)
+        x = self.complex_linear_block(x)
         return x
 
-    def create_conv_layers(self, architecture):
+    def complex_conv_layers_block(self, architecture):
         layers = []
         in_channels = self.in_channels
 
@@ -102,16 +102,3 @@ class VGG_net(nn.Module):
                 layers += [CMaxPool2d(kernel_size=(2, 2), stride=(2, 2))]
 
         return nn.Sequential(*layers)
-
-
-if __name__ == "__main__":
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = VGG_net(in_channels=3, num_classes=1000).to(device)
-    # print(model)
-    # N =  (Mini batch size)
-    x0 = torch.randn(3, 3, 224, 224).to(device)
-    x1 = torch.randn(3, 3, 224, 224).to(device)
-
-    x = torch.stack([x0, x1], -1)
-    print(x.shape)
-    print(model(x).shape)

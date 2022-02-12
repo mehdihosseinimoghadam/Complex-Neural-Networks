@@ -103,3 +103,33 @@ class CconvBlock(nn.Module):
     activated =  self.leaky_relu(normed)
 
     return activated
+  
+  
+  ##__________________________________Complex Convolutional Transpose Block________________________________________
+  
+  
+  class CConvTransBlock(nn.Module):
+  def __init__(self, in_channels, out_channels, last_layer=False, **kwargs):
+    super(CConvTransBlock, self).__init__()
+    self.in_channels = in_channels
+    self.out_channels = out_channels
+    self.last_layer = last_layer
+
+    self.CConvTrans2d = CConvTrans2d(self.in_channels, self.out_channels, **kwargs)
+    self.CBatchnorm = CBatchnorm(self.out_channels)
+    self.leaky_relu = nn.LeakyReLU()
+
+
+  def forward(self, x):
+    conved =  self.CConvTrans2d(x)
+
+    if not self.last_layer:
+        normed = self.CBatchnorm(conved)
+        activated =  self.leaky_relu(normed)
+        return activated
+    else:
+        m_phase = conved/(torch.abs(conved)+1e-8)  
+        m_mag = torch.tanh(torch.abs(conved))
+        out = m_phase * m_mag
+        return out  
+

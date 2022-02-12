@@ -1,7 +1,6 @@
 
-# Imports
 import torch
-import torch.nn as nn  # All neural network modules, nn.Linear, nn.Conv2d, BatchNorm, Loss functions
+import torch.nn as nn  
 from complex_neural_net import *
 
 VGG_types = {
@@ -70,11 +69,8 @@ class Complex_VGG_net(nn.Module):
         )
 
     def forward(self, x):
-        print(x.shape)
         x = self.complex_conv_layers(x)
-        print(x.shape)
         x = x.reshape(x.shape[0], -1,2)
-        print(x.shape)
         x = self.complex_linear_block(x)
         return x
 

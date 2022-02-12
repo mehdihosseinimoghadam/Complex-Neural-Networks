@@ -25,7 +25,7 @@ class CConv2d(nn.Module):
     out_re = self.re_conv(x_re) - self.im_conv(x_im)
     out_im = self.re_conv(x_im) + self.im_conv(x_re)
 
-    out = torch.cat([out_re, out_im], -1) 
+    out = torch.stack([out_re, out_im], -1) 
 
     return out
 
@@ -54,7 +54,7 @@ class CConv2d(nn.Module):
     out_re = self.re_Tconv(x_re) - self.im_Tconv(x_im)
     out_im = self.re_Tconv(x_im) + self.im_Tconv(x_re)
 
-    out = torch.cat([out_re, out_im], -1) 
+    out = torch.stack([out_re, out_im], -1) 
 
     return out
   
@@ -79,7 +79,7 @@ class CConv2d(nn.Module):
         out_im =  self.re_batch(x_im)
 
 
-        out = torch.cat([out_re, out_im], -1) 
+        out = torch.stack([out_re, out_im], -1) 
 
         return out
 

@@ -162,3 +162,31 @@ class CconvBlock(nn.Module):
         out = m_phase * m_mag
         return out  
 
+
+##______________________Complex LSTM Layer_________________________________________________
+
+class CLSTM(nn.Module):
+  def __init__(self, in_channels, hidden_size, num_layers, **kwargs):
+    super(CLSTM, self).__init__()
+    self.in_channels = in_channels
+    self.hidden_size = hidden_size
+    self.num_layers = num_layers
+
+
+    self.re_LSTM = nn.LSTM(self.in_channels, self.hidden_size, self.num_layers , **kwargs)
+    self.im_LSTM = nn.LSTM(self.in_channels, self.hidden_size, self.num_layers, **kwargs)
+
+
+  def forward(self, x, h0, c0):
+        x_re = x[..., 0]
+        x_im = x[..., 1]
+
+        out_re, (hn_re, cn_re) =  self.re_LSTM(x_re, (h0[...,0], c0[...,0]))
+        out_im, (hn_im, cn_im) =  self.im_LSTM(x_im, (h0[...,1], c0[...,1]))
+
+
+        out = torch.stack([out_re, out_im], -1) 
+        hn = torch.stack([hn_re, hn_im], -1) 
+        cn = torch.stack([cn_re, cn_im], -1) 
+
+        return out, (hn, cn)

@@ -224,3 +224,26 @@ class CMaxPool2d(nn.Module):
         out = torch.stack([out_re, out_im], -1) 
 
         return out
+
+##________________________________Complex Average Pooling 2d Layer_____________________________ 
+
+class CAvgPool2d(nn.Module):
+  def __init__(self, kernel_size, **kwargs):
+    super(CAvgPool2d, self).__init__()
+    self.kernel_size = kernel_size
+
+
+    self.CMax_re = nn.AvgPool2d(self.kernel_size, **kwargs)
+    self.CMax_im = nn.AvgPool2d(self.kernel_size, **kwargs) 
+
+  def forward(self, x):
+        x_re = x[..., 0]
+        x_im = x[..., 1]
+
+        out_re = self.CMax_re(x_re)
+        out_im = self.CMax_im(x_im)
+
+
+        out = torch.stack([out_re, out_im], -1) 
+
+        return out

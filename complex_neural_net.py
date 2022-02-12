@@ -205,13 +205,13 @@ class CLSTM(nn.Module):
 
 
 class CMaxPool2d(nn.Module):
-  def __init__(self, kernel_size):
+  def __init__(self, kernel_size, **kwargs):
     super(CMaxPool2d, self).__init__()
     self.kernel_size = kernel_size
 
-    
-    self.CMax_re = nn.MaxPool2d(self.kernel_size)
-    self.CMax_im = nn.MaxPool2d(self.kernel_size) 
+
+    self.CMax_re = nn.MaxPool2d(self.kernel_size, **kwargs)
+    self.CMax_im = nn.MaxPool2d(self.kernel_size, **kwargs) 
 
   def forward(self, x):
         x_re = x[..., 0]

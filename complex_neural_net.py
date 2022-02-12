@@ -200,3 +200,28 @@ class CLSTM(nn.Module):
 
         return out, (hn, cn)
 
+      
+##_______________________________Complex MaxPooling 2d Layer___________________      
+
+
+class CMaxPool2d(nn.Module):
+  def __init__(self, kernel_size):
+    super(CMaxPool2d, self).__init__()
+    self.kernel_size = kernel_size
+
+    
+    self.CMax_re = nn.MaxPool2d(self.kernel_size)
+    self.CMax_im = nn.MaxPool2d(self.kernel_size) 
+
+  def forward(self, x):
+        x_re = x[..., 0]
+        x_im = x[..., 1]
+
+        out_re = self.CMax_re(x_re)
+        out_im = self.CMax_im(x_im)
+
+
+        out = torch.stack([out_re, out_im], -1) 
+
+        return out
+

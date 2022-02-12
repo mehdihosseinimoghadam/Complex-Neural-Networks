@@ -63,30 +63,30 @@ class CConv2d(nn.Module):
   
   
   class CConvTrans2d(nn.Module):
-  def __init__(self, in_channels, out_channels, **kwargs):
-    super(CConvTrans2d, self).__init__()
-    self.in_channels = in_channels
-    self.out_channels = out_channels
+      def __init__(self, in_channels, out_channels, **kwargs):
+        super(CConvTrans2d, self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
 
 
-    self.re_Tconv = nn.ConvTranspose2d(self.in_channels, self.out_channels, **kwargs)
-    self.im_Tconv = nn.ConvTranspose2d(self.in_channels, self.out_channels, **kwargs)
+        self.re_Tconv = nn.ConvTranspose2d(self.in_channels, self.out_channels, **kwargs)
+        self.im_Tconv = nn.ConvTranspose2d(self.in_channels, self.out_channels, **kwargs)
 
-    nn.init.xavier_uniform_(self.re_Tconv.weight)
-    nn.init.xavier_uniform_(self.im_Tconv.weight)
+        nn.init.xavier_uniform_(self.re_Tconv.weight)
+        nn.init.xavier_uniform_(self.im_Tconv.weight)
 
 
-  def forward(self, x):  
-    x_re = x[..., 0]
-    x_im = x[..., 1]
+      def forward(self, x):  
+        x_re = x[..., 0]
+        x_im = x[..., 1]
 
-    out_re = self.re_Tconv(x_re) - self.im_Tconv(x_im)
-    out_im = self.re_Tconv(x_im) + self.im_Tconv(x_re)
+        out_re = self.re_Tconv(x_re) - self.im_Tconv(x_im)
+        out_im = self.re_Tconv(x_im) + self.im_Tconv(x_re)
 
-    out = torch.stack([out_re, out_im], -1) 
+        out = torch.stack([out_re, out_im], -1) 
 
-    return out
-  
+        return out
+
   
   ##___________________________Complex BatchNorm Layer____________________________________
   
@@ -138,29 +138,29 @@ class CconvBlock(nn.Module):
   
   
   class CConvTransBlock(nn.Module):
-  def __init__(self, in_channels, out_channels, last_layer=False, **kwargs):
-    super(CConvTransBlock, self).__init__()
-    self.in_channels = in_channels
-    self.out_channels = out_channels
-    self.last_layer = last_layer
+      def __init__(self, in_channels, out_channels, last_layer=False, **kwargs):
+        super(CConvTransBlock, self).__init__()
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.last_layer = last_layer
 
-    self.CConvTrans2d = CConvTrans2d(self.in_channels, self.out_channels, **kwargs)
-    self.CBatchnorm = CBatchnorm(self.out_channels)
-    self.leaky_relu = nn.LeakyReLU()
+        self.CConvTrans2d = CConvTrans2d(self.in_channels, self.out_channels, **kwargs)
+        self.CBatchnorm = CBatchnorm(self.out_channels)
+        self.leaky_relu = nn.LeakyReLU()
 
 
-  def forward(self, x):
-    conved =  self.CConvTrans2d(x)
+      def forward(self, x):
+        conved =  self.CConvTrans2d(x)
 
-    if not self.last_layer:
-        normed = self.CBatchnorm(conved)
-        activated =  self.leaky_relu(normed)
-        return activated
-    else:
-        m_phase = conved/(torch.abs(conved)+1e-8)  
-        m_mag = torch.tanh(torch.abs(conved))
-        out = m_phase * m_mag
-        return out  
+        if not self.last_layer:
+            normed = self.CBatchnorm(conved)
+            activated =  self.leaky_relu(normed)
+            return activated
+        else:
+            m_phase = conved/(torch.abs(conved)+1e-8)  
+            m_mag = torch.tanh(torch.abs(conved))
+            out = m_phase * m_mag
+            return out  
 
 
 ##______________________Complex LSTM Layer_________________________________________________

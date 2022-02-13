@@ -61,7 +61,7 @@ Architectures 🏛️
 
 
 
-## Usage of Layers ✨✨:
+## Usage of Layers ✨✨
 
 Clone the Repo:
 
@@ -142,4 +142,200 @@ tensor([[[[[-2.7639, -0.3970],
            [-0.4549,  0.0852]]]]], grad_fn=<StackBackward0>)
 torch.Size([1, 2, 4, 4, 2])
 
+```
+
+Usage of Different Architectures ✨✨
+
+
+```sh
+git clone https://github.com/mehdihosseinimoghadam/Complex-Neural-Networks.git
+```
+
+Some Imports:
+```py
+>>> import torch
+>>> from complex_neural_net import CConv2d
+>>> from Complex_Vgg_net import *
+```
+
+Initialize Model:
+
+```py
+>>> device = "cuda" if torch.cuda.is_available() else "cpu"
+>>> model = Complex_VGG_net(in_channels=3, num_classes=1000).to(device)
+>>> print(model)
+
+Complex_VGG_net(
+  (complex_conv_layers): Sequential(
+    (0): CConv2d(
+      (re_conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (1): CBatchnorm(
+      (re_batch): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (2): ReLU()
+    (3): CConv2d(
+      (re_conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (4): CBatchnorm(
+      (re_batch): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (5): ReLU()
+    (6): CMaxPool2d(
+      (CMax_re): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+      (CMax_im): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    )
+    (7): CConv2d(
+      (re_conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (8): CBatchnorm(
+      (re_batch): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (9): ReLU()
+    (10): CConv2d(
+      (re_conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (11): CBatchnorm(
+      (re_batch): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (12): ReLU()
+    (13): CMaxPool2d(
+      (CMax_re): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+      (CMax_im): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    )
+    (14): CConv2d(
+      (re_conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (15): CBatchnorm(
+      (re_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (16): ReLU()
+    (17): CConv2d(
+      (re_conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (18): CBatchnorm(
+      (re_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (19): ReLU()
+    (20): CConv2d(
+      (re_conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (21): CBatchnorm(
+      (re_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (22): ReLU()
+    (23): CMaxPool2d(
+      (CMax_re): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+      (CMax_im): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    )
+    (24): CConv2d(
+      (re_conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (25): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (26): ReLU()
+    (27): CConv2d(
+      (re_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (28): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (29): ReLU()
+    (30): CConv2d(
+      (re_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (31): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (32): ReLU()
+    (33): CMaxPool2d(
+      (CMax_re): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+      (CMax_im): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    )
+    (34): CConv2d(
+      (re_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (35): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (36): ReLU()
+    (37): CConv2d(
+      (re_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (38): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (39): ReLU()
+    (40): CConv2d(
+      (re_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (im_conv): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (41): CBatchnorm(
+      (re_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (im_batch): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (42): ReLU()
+    (43): CMaxPool2d(
+      (CMax_re): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+      (CMax_im): MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding=0, dilation=1, ceil_mode=False)
+    )
+  )
+  (complex_linear_block): Sequential(
+    (0): CLinear(
+      (re_linear): Linear(in_features=25088, out_features=4096, bias=True)
+      (im_linear): Linear(in_features=25088, out_features=4096, bias=True)
+    )
+    (1): ReLU()
+    (2): Dropout(p=0.5, inplace=False)
+    (3): CLinear(
+      (re_linear): Linear(in_features=4096, out_features=4096, bias=True)
+      (im_linear): Linear(in_features=4096, out_features=4096, bias=True)
+    )
+    (4): ReLU()
+    (5): Dropout(p=0.5, inplace=False)
+    (6): CLinear(
+      (re_linear): Linear(in_features=4096, out_features=1000, bias=True)
+      (im_linear): Linear(in_features=4096, out_features=1000, bias=True)
+    )
+  )
+)
+
+```
+
+Feed Data into Model:
+
+```py
+>>> x0 = torch.randn(3, 3, 224, 224).to(device)
+>>> x1 = torch.randn(3, 3, 224, 224).to(device)
+>>> x = torch.stack([x0, x1], -1)
+>>> print(x.shape)
+>>> print(model(x).shape)
+
+torch.Size([3, 3, 224, 224, 2])
+torch.Size([3, 1000, 2])
 ```

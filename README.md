@@ -144,7 +144,7 @@ torch.Size([1, 2, 4, 4, 2])
 
 ```
 
-Usage of Different Architectures ✨✨
+## Usage of Different Architectures ✨✨
 
 
 ```sh

@@ -61,7 +61,7 @@ Architectures 🏛️
 
 
 
-## Usage
+## Usage of Layers ✨✨:
 
 Clone the Repo:
 
@@ -71,13 +71,13 @@ Clone the Repo:
 git clone https://github.com/mehdihosseinimoghadam/Complex-Neural-Networks.git
 ```
 
-Some Imports
+Some Imports:
 ```py
 >>> import torch
 >>> from complex_neural_net import CConv2d
 ```
 
-Praper Complex Valued Data
+Praper Complex Valued Data:
 
 ```py
 >>> x0 = torch.randn(5,5)
@@ -91,7 +91,7 @@ torch.Size([1, 1, 5, 5, 2])
 ```
 
 
-Use Complex Valued Conv2d
+Use Complex Valued Conv2d:
 
 ```py
 >>> CConv2d1 = CConv2d(in_channels = 1, out_channels = 2, kernel_size = (2,2), stride = (1,1), padding = (0,0))

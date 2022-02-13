@@ -27,6 +27,7 @@ Almost all deep learning layers and deep learning models work with real numbers,
 
 
 
+
 Prerequisites 🧰
 -------------
 - `Python 3.6` 

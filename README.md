@@ -34,7 +34,7 @@ Prerequisites 🧰
 
 
 
-Layers
+Layers 🧱
 ----------
 | Layer  | Class Name |  File | 
 | :-------------: | :---------------: | :---------------: |
@@ -49,7 +49,7 @@ Layers
 
 
 
-Architectures
+Architectures 🏛️
 ----------
 | Layer  | Class Name |  File | 
 | :-------------: | :---------------: | :---------------: |

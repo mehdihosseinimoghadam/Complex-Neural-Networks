@@ -34,7 +34,7 @@ Prerequisites 🧰
 
 
 
-Getting the weights
+Layers
 ----------
 | Layer  | Class Name |  File | 
 | :-------------: | :---------------: | :---------------: |

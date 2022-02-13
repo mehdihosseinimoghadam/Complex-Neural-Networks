@@ -22,7 +22,7 @@
 
 
 #### Short Intro on Complex Neural Networks 📖
-Almost all deep learning layers and deep learning models work with real numbers, but there are some cases which we might need complex numbers in our neural net. A brilliant example of this is in the area of signal processing, when we want to analyze both magnitude and phase of a given signal (for more info on that refer to [this paper](https://openreview.net/forum?id=SkeRTsAcYm) So it is important to have complex valued neural networks, which this repo is all about. For more info refer to [this paper](https://arxiv.org/abs/2101.12249)
+Almost all deep learning layers and deep learning models work with real numbers, but there are some cases which we might need complex numbers in our neural net. A brilliant example of this is in the area of signal processing, when we want to analyze both magnitude and phase of a given signal (for more info on that refer to [this paper](https://openreview.net/forum?id=SkeRTsAcYm). So it is important to have complex valued neural networks, which this repo is all about. For more info refer to [this paper](https://arxiv.org/abs/2101.12249)
 
 
 

@@ -339,3 +339,14 @@ Feed Data into Model:
 torch.Size([3, 3, 224, 224, 2])
 torch.Size([3, 1000, 2])
 ```
+
+
+## Contact
+
+<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+<p>Or</p> 
+
+<a href="https://www.patreon.com/amitmerchant">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>

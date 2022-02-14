@@ -343,10 +343,12 @@ torch.Size([3, 1000, 2])
 
 ## Contact
 
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://cdn-icons.flaticon.com/png/512/3536/premium/3536505.png?token=exp=1644871115~hmac=59bc0b44906adebd63f84642086d4695" alt="Buy Me A Coffee" style="height: 100px !important;width: 100px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://ir.linkedin.com/in/mehdi-hosseini-moghadam-384912198" target="_blank"><img src="https://cdn-icons.flaticon.com/png/512/3536/premium/3536505.png?token=exp=1644871115~hmac=59bc0b44906adebd63f84642086d4695" alt="Buy Me A Coffee" style="height: 50px !important;width: 50px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-<p>Or</p> 
+<p>
+	
+	
+<a href="https://scholar.google.com/citations?user=TKWbohsAAAAJ&hl=en" target="_blank"><img src="https://cdn-icons.flaticon.com/png/512/3107/premium/3107171.png?token=exp=1644871560~hmac=7f8fd85e8db71945e25202a3ac739e1c" alt="Buy Me A Coffee" style="height: 50px !important;width: 50px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
-<a href="https://www.patreon.com/amitmerchant">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+<p>	
+	

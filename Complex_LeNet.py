@@ -1,3 +1,16 @@
+"""
+Complex Valued LeNet From Scratch
+Programmed by Mehdi Hosseini Moghadam
+
+The Base Code Of LeNet Has Been Taken From:
+   https://github.com/aladdinpersson
+
+*    MIT Licence
+*    2022-02-15 Last Update
+"""
+
+
+
 import torch
 import torch.nn as nn  
 from complex_neural_net import *

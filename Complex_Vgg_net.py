@@ -1,3 +1,17 @@
+"""
+Complex Valued VGG Net From Scratch
+Programmed by Mehdi Hosseini Moghadam
+
+The Base Code Of VGG Has Been Taken From:
+   https://github.com/aladdinpersson
+
+*    MIT Licence
+*    2022-02-15 Last Update
+"""
+
+
+
+
 
 import torch
 import torch.nn as nn  

@@ -1,3 +1,15 @@
+"""
+Complex Valued Neural Layers From Scratch
+Programmed by Mehdi Hosseini Moghadam
+*    MIT Licence
+*    2022-02-15 Last Update
+"""
+
+
+
+
+
+
 from torch import nn
 import torch
 

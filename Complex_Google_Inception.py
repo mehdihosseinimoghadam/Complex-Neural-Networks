@@ -1,3 +1,16 @@
+"""
+Complex Valued Google Inception From Scratch
+Programmed by Mehdi Hosseini Moghadam
+
+The Base Code Of Google Inception Has Been Taken From:
+   https://github.com/aladdinpersson
+
+*    MIT Licence
+*    2022-02-15 Last Update
+"""
+
+
+
 import torch
 from torch import nn
 from complex_neural_net import *

@@ -6,7 +6,7 @@ The Base Code Of LeNet Has Been Taken From:
    https://github.com/aladdinpersson
 
 *    MIT Licence
-*    2022-02-15 Last Update
+*    2022-02-15 Last Update 
 """
 
 

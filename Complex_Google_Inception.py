@@ -1,6 +1,6 @@
 """
 Complex Valued Google Inception From Scratch
-Programmed by Mehdi Hosseini Moghadam
+by Mehdi Hosseini Moghadam
 
 The Base Code Of Google Inception Has Been Taken From:
    https://github.com/aladdinpersson

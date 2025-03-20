@@ -1,6 +1,7 @@
 """
 Complex Valued LeNet From Scratch
-Programmed by Mehdi Hosseini Moghadam
+by Mehdi Hosseini Moghadam
+
 
 The Base Code Of LeNet Has Been Taken From:
    https://github.com/aladdinpersson

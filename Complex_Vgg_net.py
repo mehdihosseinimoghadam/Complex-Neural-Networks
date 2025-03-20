@@ -1,6 +1,6 @@
 """
 Complex Valued VGG Net From Scratch
-Programmed by Mehdi Hosseini Moghadam
+by Mehdi Hosseini Moghadam
 
 The Base Code Of VGG Has Been Taken From:
    https://github.com/aladdinpersson

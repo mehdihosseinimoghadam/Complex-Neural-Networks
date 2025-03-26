@@ -15,13 +15,15 @@
 
 
 
+
 ```mermaid
-    A[Input (dim)] --> B[Linear Layer W1 (dim -> hidden_dim)]
+flowchart TD;
+    A[Input (dim)] --> B[Linear Layer W1 (dim → hidden_dim)]
     B --> C[SiLU Activation]
-    A --> D[Linear Layer W3 (dim -> hidden_dim)]
+    A --> D[Linear Layer W3 (dim → hidden_dim)]
     C --> E[Element-wise Multiplication]
     D --> E
-    E --> F[Linear Layer W2 (hidden_dim -> dim)]
+    E --> F[Linear Layer W2 (hidden_dim → dim)]
     F --> G[Output (dim)]
 ```
 

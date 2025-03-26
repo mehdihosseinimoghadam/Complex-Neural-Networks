@@ -16,7 +16,6 @@
 
 
 ```mermaid
-flowchart TD
     A[Input (dim)] --> B[Linear Layer W1 (dim -> hidden_dim)]
     B --> C[SiLU Activation]
     A --> D[Linear Layer W3 (dim -> hidden_dim)]

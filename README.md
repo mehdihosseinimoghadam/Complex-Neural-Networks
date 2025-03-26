@@ -15,6 +15,40 @@
 
 
 
+```mermaid
+flowchart TD
+    Input[Input Tokens] --> Embed[Token Embeddings]
+    Embed --> TransformerLoop[Transformer Layers Loop]
+    
+    subgraph TransformerBlock[Transformer Block]
+        AN[Attention Norm] --> Att[Attention]
+        Att --> AddNorm1[Add & Norm]
+        AddNorm1 --> FFN[Feed Forward Network]
+        
+        subgraph Attention[Attention Module]
+            Q[Q Linear] & K[K Linear] & V[V Linear] --> ROT[Rotary Embeddings]
+            ROT --> ATTN[Memory Efficient Attention]
+            ATTN --> WO[Output Linear]
+        end
+        
+        subgraph FFN[Feed Forward Network]
+            Input2[Input] --> Gate[Gate Linear]
+            Gate --> TopK[Top-2 Expert Selection]
+            
+            subgraph Experts[Expert Network x N]
+                W1[Linear W1] --> SILU[SiLU Activation]
+                W3[Linear W3] --> Mult[Multiply]
+                SILU --> Mult
+                Mult --> W2[Linear W2]
+            end
+            
+            TopK --> WeightedSum[Weighted Sum of Expert Outputs]
+        end
+    end
+    
+    TransformerLoop --> FinalNorm[Final Layer Norm]
+    FinalNorm --> Output[Output Layer]
+```
 
 
 

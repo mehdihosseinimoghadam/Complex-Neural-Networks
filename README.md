@@ -17,37 +17,78 @@
 
 ```mermaid
 flowchart TD
-    Input[Input Tokens] --> Embed[Token Embeddings]
-    Embed --> TransformerLoop[Transformer Layers Loop]
-    
-    subgraph TransformerBlock[Transformer Block]
-        AN[Attention Norm] --> Att[Attention]
-        Att --> AddNorm1[Add & Norm]
-        AddNorm1 --> FFN[Feed Forward Network]
+    subgraph Transformer["Transformer"]
+        TE["Token Embeddings"]
+        NormOut["Final RMSNorm"]
+        OutLayer["Output Linear Layer"]
         
-        subgraph Attention[Attention Module]
-            Q[Q Linear] & K[K Linear] & V[V Linear] --> ROT[Rotary Embeddings]
-            ROT --> ATTN[Memory Efficient Attention]
-            ATTN --> WO[Output Linear]
+        subgraph Layers["Transformer Layers"]
+            direction LR
+            subgraph TB["TransformerBlock"]
+                direction TB
+                AttNorm["Attention RMSNorm"]
+                Att["Attention Module"]
+                FFNorm["FFN RMSNorm"]
+                FF["Feed Forward Module"]
+            end
         end
         
-        subgraph FFN[Feed Forward Network]
-            Input2[Input] --> Gate[Gate Linear]
-            Gate --> TopK[Top-2 Expert Selection]
+        subgraph Attention["Attention"]
+            direction TB
+            WQ["WQ Linear"]
+            WK["WK Linear"]
+            WV["WV Linear"]
+            WO["WO Linear"]
+            Rot["Rotary Position Embeddings"]
+            XA["XFormers Attention"]
+        end
+        
+        subgraph MoE["Mixture of Experts"]
+            direction LR
+            Gate["Gating Network"]
             
-            subgraph Experts[Expert Network x N]
-                W1[Linear W1] --> SILU[SiLU Activation]
-                W3[Linear W3] --> Mult[Multiply]
-                SILU --> Mult
-                Mult --> W2[Linear W2]
+            subgraph Experts["Feed Forward Experts"]
+                direction TB
+                subgraph FFExpert["FeedForwardExpert"]
+                    W1["Linear W1 (dim→hidden_dim)"]
+                    W3["Linear W3 (dim→hidden_dim)"]
+                    SiLU["SiLU Activation"]
+                    Mul["Element-wise Multiplication"]
+                    W2["Linear W2 (hidden_dim→dim)"]
+                end
             end
-            
-            TopK --> WeightedSum[Weighted Sum of Expert Outputs]
         end
     end
     
-    TransformerLoop --> FinalNorm[Final Layer Norm]
-    FinalNorm --> Output[Output Layer]
+    %% Connections
+    TE --> TB
+    TB --> NormOut
+    NormOut --> OutLayer
+    
+    %% Inside TransformerBlock
+    AttNorm --> Att
+    Att --> FF
+    FFNorm --> FF
+    
+    %% Inside Attention
+    WQ --> Rot
+    WK --> Rot
+    Rot --> XA
+    WV --> XA
+    XA --> WO
+    
+    %% Inside MoE
+    Gate --> Experts
+    
+    %% Inside FFExpert
+    W1 --> SiLU
+    SiLU --> Mul
+    W3 --> Mul
+    Mul --> W2
+    
+    %% Main Connections
+    TB --> TB
+    FF --> MoE
 ```
 
 

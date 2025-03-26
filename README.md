@@ -16,8 +16,7 @@
 
 
 
-```mermaid
-flowchart TD;
+flowchart TD
     A[Input (dim)] --> B[Linear Layer W1 (dim → hidden_dim)]
     B --> C[SiLU Activation]
     A --> D[Linear Layer W3 (dim → hidden_dim)]
@@ -25,7 +24,6 @@ flowchart TD;
     D --> E
     E --> F[Linear Layer W2 (hidden_dim → dim)]
     F --> G[Output (dim)]
-```
 
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
